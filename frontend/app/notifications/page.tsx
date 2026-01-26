@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef } from 'react'
 import { supabase } from '@/lib/supabase'
 import { useRouter } from 'next/navigation'
+import { requestNotificationPermission, registerPushToken, getServiceWorkerToken } from '@/lib/notifications'
 import type { NotificationsConfig } from '@/types/database.types'
 
 export default function NotificationsPage() {
@@ -49,6 +50,10 @@ export default function NotificationsPage() {
   const [visitsProgramadasSearch, setVisitsProgramadasSearch] = useState('')
   const visitsProgramadasSearchRef = useRef<HTMLInputElement>(null)
 
+  // Estado para permisos de notificaciones del navegador (opcional)
+  const [browserNotificationPermission, setBrowserNotificationPermission] = useState<'default' | 'granted' | 'denied'>('default')
+  const [activatingNotifications, setActivatingNotifications] = useState(false)
+
   const daysOfWeek = [
     { value: 'monday', label: 'Lunes' },
     { value: 'tuesday', label: 'Martes' },
@@ -61,7 +66,46 @@ export default function NotificationsPage() {
 
   useEffect(() => {
     loadData()
+    checkBrowserNotificationPermission()
   }, [])
+
+  const checkBrowserNotificationPermission = () => {
+    if (typeof window !== 'undefined' && 'Notification' in window) {
+      setBrowserNotificationPermission(Notification.permission as 'default' | 'granted' | 'denied')
+    }
+  }
+
+  const handleActivateBrowserNotifications = async () => {
+    setActivatingNotifications(true)
+    try {
+      const permission = await requestNotificationPermission()
+      
+      if (permission.granted) {
+        setBrowserNotificationPermission('granted')
+        
+        // Obtener y registrar token
+        const token = await getServiceWorkerToken()
+        if (token) {
+          await registerPushToken(token, 'web')
+        }
+        
+        setSuccessMessage('✓ Notificaciones del navegador activadas')
+        setTimeout(() => setSuccessMessage(''), 3000)
+      } else if (permission.denied) {
+        setBrowserNotificationPermission('denied')
+        setSuccessMessage('✗ Permisos de notificación denegados. Puedes activarlos desde la configuración del navegador.')
+        setTimeout(() => setSuccessMessage(''), 5000)
+      } else {
+        setBrowserNotificationPermission('default')
+      }
+    } catch (error) {
+      console.error('Error activando notificaciones:', error)
+      setSuccessMessage('✗ Error al activar notificaciones')
+      setTimeout(() => setSuccessMessage(''), 3000)
+    } finally {
+      setActivatingNotifications(false)
+    }
+  }
 
   const loadData = async () => {
     try {
@@ -403,10 +447,80 @@ export default function NotificationsPage() {
         
         {/* Configuración de Notificaciones (colapsable) */}
         {showNotifConfig && (
-          <div className="card" style={{ padding: '24px', marginBottom: '24px' }}>
+          <div
+            className="card"
+            style={{
+              padding: '24px',
+              marginBottom: '24px',
+              boxShadow: 'none',
+              border: 'none',
+              outline: 'none',
+            }}
+          >
             <h2 style={{ fontSize: '18px', fontWeight: '600', color: '#1F2937', marginBottom: '20px' }}>
               🔕 Configuración de Notificaciones
             </h2>
+
+            {/* Activación opcional de notificaciones del navegador */}
+            {browserNotificationPermission !== 'granted' && (
+              <div style={{ 
+                padding: '20px', 
+                background: browserNotificationPermission === 'denied' ? '#FEE2E2' : '#E0E7FF', 
+                borderRadius: '12px', 
+                marginBottom: '20px'
+              }}>
+                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px', marginBottom: '12px' }}>
+                  <span style={{ fontSize: '24px' }}>🔔</span>
+                  <div style={{ flex: 1 }}>
+                    <h3 style={{ fontSize: '16px', fontWeight: '600', color: browserNotificationPermission === 'denied' ? '#991B1B' : '#4338CA', marginBottom: '4px' }}>
+                      Notificaciones del Navegador {browserNotificationPermission === 'denied' ? '(Desactivadas)' : '(Opcional)'}
+                    </h3>
+                    <p style={{ fontSize: '13px', color: browserNotificationPermission === 'denied' ? '#DC2626' : '#6366F1', marginBottom: '12px' }}>
+                      {browserNotificationPermission === 'denied' 
+                        ? 'Los permisos de notificación están bloqueados. Puedes activarlos desde la configuración de tu navegador.'
+                        : 'Activa las notificaciones push para recibir alertas en tiempo real sobre cambios de estado de simpatizantes. Esto es completamente opcional.'}
+                    </p>
+                    {browserNotificationPermission !== 'denied' && (
+                      <button
+                        onClick={handleActivateBrowserNotifications}
+                        disabled={activatingNotifications}
+                        style={{
+                          padding: '10px 20px',
+                          background: '#6366F1',
+                          color: 'white',
+                          border: 'none',
+                          borderRadius: '8px',
+                          fontSize: '14px',
+                          fontWeight: '600',
+                          cursor: activatingNotifications ? 'not-allowed' : 'pointer',
+                          opacity: activatingNotifications ? 0.6 : 1,
+                          transition: 'all 0.2s'
+                        }}
+                      >
+                        {activatingNotifications ? '⏳ Activando...' : '✓ Activar Notificaciones del Navegador'}
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {browserNotificationPermission === 'granted' && (
+              <div style={{ 
+                padding: '16px', 
+                background: '#D1FAE5', 
+                borderRadius: '12px', 
+                marginBottom: '20px',
+                border: '2px solid #10B981'
+              }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <span style={{ fontSize: '20px' }}>✓</span>
+                  <p style={{ fontSize: '14px', color: '#065F46', fontWeight: '500', margin: 0 }}>
+                    Notificaciones del navegador activadas. Recibirás alertas en tiempo real.
+                  </p>
+                </div>
+              </div>
+            )}
 
             {/* Estado Urgente */}
             <div style={{ padding: '20px', background: '#FEE2E2', borderRadius: '12px', marginBottom: '20px' }}>

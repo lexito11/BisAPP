@@ -25,10 +25,14 @@ export default function NotificationManager() {
 
   const initializeNotifications = async () => {
     try {
-      // Solicitar permisos
-      const permission = await requestNotificationPermission()
-      
-      if (permission.granted) {
+      // NO solicitar permisos automáticamente - solo verificar si ya están otorgados
+      // Las notificaciones son opcionales y se pueden activar desde la configuración
+      if (!('Notification' in window)) {
+        return // Navegador no soporta notificaciones
+      }
+
+      // Si ya tiene permisos otorgados, inicializar
+      if (Notification.permission === 'granted') {
         setPermissionGranted(true)
         
         // Obtener token
@@ -39,9 +43,9 @@ export default function NotificationManager() {
           const registered = await registerPushToken(token, 'web')
           setIsRegistered(registered)
         }
-      } else if (permission.denied) {
-        console.warn('Permisos de notificación denegados')
       }
+      // Si el permiso es 'default' o 'denied', simplemente continuar sin bloquear
+      // El usuario puede activar notificaciones desde la página de configuración
     } catch (error) {
       console.error('Error inicializando notificaciones:', error)
     }
