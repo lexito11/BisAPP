@@ -910,7 +910,7 @@ export default function Dashboard() {
           )}
           <div 
             ref={scrollContainerRef}
-            className="overflow-x-auto w-full max-h-[500px] overflow-y-auto"
+            className="overflow-x-auto w-full max-h-[500px] overflow-y-auto hide-scrollbar-horizontal"
           >
             <div className="w-full">
               <table className="w-full border-collapse">
