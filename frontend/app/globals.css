@@ -185,3 +185,15 @@
     animation: spin 0.7s linear infinite;
   }
 }
+
+/* Ocultar scrollbar horizontal en móviles - solo para la tabla de simpatizantes */
+@media (max-width: 640px) {
+  .hide-scrollbar-horizontal {
+    -ms-overflow-style: none;  /* IE y Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+  
+  .hide-scrollbar-horizontal::-webkit-scrollbar {
+    display: none;  /* Chrome, Safari y Opera */
+  }
+}
