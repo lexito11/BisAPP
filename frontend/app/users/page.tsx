@@ -251,7 +251,7 @@ export default function UsersPage() {
             alt="Cargando" 
             className="w-12 h-12 md:w-16 md:h-16 mb-4 animate-spin mx-auto" 
           />
-          <p className="text-gray-500 text-base md:text-lg">{message}</p>
+          <p className="text-gray-500 text-lg md:text-xl">{message}</p>
         </div>
       </div>
     )
@@ -264,7 +264,7 @@ export default function UsersPage() {
         <div className="max-w-[1400px] mx-auto">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <div className="w-full sm:w-auto">
-              <h1 className="text-xl md:text-2xl lg:text-3xl font-bold mb-1 flex items-center gap-2 md:gap-3">
+              <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-1 flex items-center gap-2 md:gap-3">
                 <img src="/icons/dosusuarios1.svg" alt="Roles" className="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 flex-shrink-0" /> 
                 <span className="hidden sm:inline">Gestión de Usuarios</span>
                 <span className="sm:hidden">Usuarios</span>
@@ -276,7 +276,7 @@ export default function UsersPage() {
                   setNavigating('back')
                   router.push('/dashboard')
                 }}
-                className="flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 md:px-4 md:py-2 text-sm md:text-base rounded-lg transition-all hover:scale-105 active:scale-95 w-full sm:w-auto"
+                className="flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 md:px-4 md:py-2 text-base md:text-lg rounded-lg transition-all hover:scale-105 active:scale-95 w-full sm:w-auto"
               >
                 <img src="/icons/iconoatras-blanco.svg" alt="Volver" className="w-5 h-5 md:w-7 md:h-7 mr-2" /> 
                 <span className="hidden sm:inline">Volver</span>
@@ -302,7 +302,7 @@ export default function UsersPage() {
         {/* Usuarios de la iglesia */}
         <div className="card" style={{ marginBottom: '24px', padding: '24px', boxShadow: 'none', border: 'none' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px', flexWrap: 'wrap', gap: '12px' }}>
-            <h2 style={{ fontSize: '20px', fontWeight: '600', color: '#1F2937' }}>
+            <h2 style={{ fontSize: '22px', fontWeight: '600', color: '#1F2937' }}>
               Usuarios de la Iglesia
             </h2>
             {currentUser?.is_real_admin && (
@@ -333,7 +333,7 @@ export default function UsersPage() {
               background: '#DBEAFE', 
               borderRadius: '8px', 
               marginBottom: '20px',
-              fontSize: '14px',
+              fontSize: '16px',
               color: '#1E40AF'
             }}>
               En esta sección (Roles) solo puedes ver. El administrador con login es el que tiene todo el control: crear usuarios, desactivarlos y otorgar o quitar permiso de administrador.
@@ -342,7 +342,7 @@ export default function UsersPage() {
 
           <div style={{ display: 'grid', gap: '16px' }}>
             {users.map((user) => (
-              <div key={user.id} style={{ 
+              <div key={user.id} className="users-row" style={{ 
                 display: 'flex', 
                 alignItems: 'center', 
                 justifyContent: 'space-between',
@@ -351,7 +351,7 @@ export default function UsersPage() {
                 border: '1px solid #E5E7EB',
                 borderRadius: '8px'
               }}>
-                <div style={{ 
+                <div className="users-row-main" style={{ 
                   display: 'flex', 
                   alignItems: 'center', 
                   gap: '16px',
@@ -375,22 +375,22 @@ export default function UsersPage() {
                     {user.name.substring(0, 2).toUpperCase()}
                   </div>
                   <div>
-                    <p style={{ fontWeight: '600', color: '#1F2937', fontSize: '16px', marginBottom: '4px' }}>
+                    <p style={{ fontWeight: '600', color: '#1F2937', fontSize: '18px', marginBottom: '4px' }}>
                       {user.name}
                     </p>
-                    <p style={{ fontSize: '14px', color: '#6B7280' }}>
+                    <p style={{ fontSize: '16px', color: '#6B7280' }}>
                       {user.email}
                     </p>
                   </div>
                 </div>
-                <div style={{ 
+                <div className="users-row-actions" style={{ 
                   display: 'flex', 
                   alignItems: 'center', 
                   gap: '12px',
                   opacity: 1,
                   filter: 'none'
                 }}>
-                  <span style={{ 
+                  <span className="users-role-pill" style={{ 
                     padding: '6px 12px',
                     borderRadius: '20px',
                     fontSize: '13px',
@@ -404,7 +404,7 @@ export default function UsersPage() {
                     <span style={{ 
                       padding: '4px 8px',
                       borderRadius: '12px',
-                      fontSize: '11px',
+                      fontSize: '13px',
                       fontWeight: '600',
                       background: '#FEE2E2',
                       color: '#991B1B',
@@ -485,7 +485,7 @@ export default function UsersPage() {
                                 background: 'transparent',
                                 border: 'none',
                                 textAlign: 'left',
-                                fontSize: '14px',
+                                fontSize: '16px',
                                 color: '#6B7280',
                                 cursor: 'pointer',
                                 display: 'flex',
@@ -558,10 +558,10 @@ export default function UsersPage() {
           </h2>
           <div style={{ display: 'grid', gap: '16px' }}>
             <div style={{ padding: '16px', background: '#FEF3C7', borderRadius: '8px', border: 'none' }}>
-              <h3 style={{ fontSize: '16px', fontWeight: '600', color: '#92400E', marginBottom: '8px' }}>
+              <h3 style={{ fontSize: '18px', fontWeight: '600', color: '#92400E', marginBottom: '8px' }}>
                 Administrador con login (todo el control)
               </h3>
-              <p style={{ fontSize: '14px', color: '#92400E' }}>
+              <p style={{ fontSize: '16px', color: '#92400E' }}>
                 Es el que inició sesión y creó la iglesia. Tiene todo el control: en Roles puede crear usuarios, desactivarlos y otorgar o quitar permiso de administrador. Además, configurar tiempos, marcar visitas realizadas/no realizadas, agregar observaciones y todo lo demás.
               </p>
             </div>
@@ -574,10 +574,10 @@ export default function UsersPage() {
               </p>
             </div>
             <div style={{ padding: '16px', background: '#DBEAFE', borderRadius: '8px', border: 'none' }}>
-              <h3 style={{ fontSize: '16px', fontWeight: '600', color: '#1E40AF', marginBottom: '8px' }}>
+              <h3 style={{ fontSize: '18px', fontWeight: '600', color: '#1E40AF', marginBottom: '8px' }}>
                 Líder
               </h3>
-              <p style={{ fontSize: '14px', color: '#1E40AF' }}>
+              <p style={{ fontSize: '16px', color: '#1E40AF' }}>
                 Ver y contactar simpatizantes, agregar observaciones. No puede crear usuarios, desactivar usuarios, otorgar permisos ni marcar visitas como realizadas/no realizadas.
               </p>
             </div>
@@ -611,7 +611,7 @@ export default function UsersPage() {
 
             <form onSubmit={handleCreateUser}>
               <div className="form-group">
-                <label style={{ fontSize: '14px', fontWeight: '500', color: '#374151' }}>
+                <label style={{ fontSize: '16px', fontWeight: '500', color: '#374151' }}>
                   Nombre Completo <span style={{ color: '#DC2626' }}>*</span>
                 </label>
                 <input
@@ -626,7 +626,7 @@ export default function UsersPage() {
               </div>
 
               <div className="form-group">
-                <label style={{ fontSize: '14px', fontWeight: '500', color: '#374151' }}>
+                <label style={{ fontSize: '16px', fontWeight: '500', color: '#374151' }}>
                   Correo Electrónico <span style={{ color: '#DC2626' }}>*</span>
                 </label>
                 <input
@@ -653,7 +653,7 @@ export default function UsersPage() {
               </div>
 
               <div className="form-group">
-                <label style={{ fontSize: '14px', fontWeight: '500', color: '#374151' }}>
+                <label style={{ fontSize: '16px', fontWeight: '500', color: '#374151' }}>
                   Rol
                 </label>
                 <select 
@@ -683,7 +683,7 @@ export default function UsersPage() {
                   color: '#991B1B', 
                   borderRadius: '8px',
                   marginBottom: '16px',
-                  fontSize: '14px'
+                  fontSize: '16px'
                 }}>
                   ⚠️ {error}
                 </div>
@@ -706,7 +706,7 @@ export default function UsersPage() {
                     background: 'rgba(37, 99, 235, 0.1)',
                     color: '#2563EB',
                     padding: '12px',
-                    fontSize: '15px',
+                    fontSize: '17px',
                     fontWeight: '600'
                   }}
                   disabled={creating}
@@ -720,7 +720,7 @@ export default function UsersPage() {
                     flex: 1,
                     background: '#2563EB',
                     padding: '12px',
-                    fontSize: '15px',
+                    fontSize: '17px',
                     fontWeight: '600'
                   }}
                   disabled={creating}
