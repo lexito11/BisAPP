@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { supabase } from '@/lib/supabase'
 import { useRouter } from 'next/navigation'
 import { BellRing } from 'lucide-react'
@@ -45,6 +45,8 @@ export default function Dashboard() {
   const [uploadingImage, setUploadingImage] = useState(false)
   const [showProfileMenu, setShowProfileMenu] = useState(false)
   const [navigating, setNavigating] = useState<'logout' | null>(null)
+  const [scrollPosition, setScrollPosition] = useState({ left: 0, max: 0, width: 0 })
+  const scrollContainerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     loadUserData()
@@ -58,6 +60,37 @@ export default function Dashboard() {
 
     return () => clearInterval(interval)
   }, [])
+
+  // Efecto para rastrear el scroll horizontal
+  useEffect(() => {
+    const container = scrollContainerRef.current
+    if (!container) return
+
+    const updateScrollPosition = () => {
+      const scrollLeft = container.scrollLeft
+      const scrollWidth = container.scrollWidth
+      const clientWidth = container.clientWidth
+      const maxScroll = scrollWidth - clientWidth
+
+      setScrollPosition({
+        left: scrollLeft,
+        max: maxScroll,
+        width: clientWidth
+      })
+    }
+
+    // Actualizar al cargar y al redimensionar
+    updateScrollPosition()
+    window.addEventListener('resize', updateScrollPosition)
+
+    // Escuchar eventos de scroll
+    container.addEventListener('scroll', updateScrollPosition)
+
+    return () => {
+      container.removeEventListener('scroll', updateScrollPosition)
+      window.removeEventListener('resize', updateScrollPosition)
+    }
+  }, [sympathizers]) // Recalcular cuando cambien los simpatizantes
 
   const loadUserData = async () => {
     try {
@@ -851,7 +884,34 @@ export default function Dashboard() {
           <div className="px-2 sm:px-3 py-1 sm:py-2 border-b-2 border-gray-300 bg-white">
             <h2 className="text-xl sm:text-2xl font-semibold text-gray-800">Lista de simpatizantes</h2>
           </div>
-          <div className="overflow-x-auto w-full max-h-[500px] overflow-y-auto">
+          {/* Indicador de scroll horizontal dinámico - solo móviles */}
+          {scrollPosition.max > 0 && scrollPosition.width > 0 && (
+            <div className="sm:hidden relative h-1 bg-gray-200 w-full">
+              {(() => {
+                // Calcular el ancho del indicador como porcentaje del contenedor visible
+                const scrollWidth = scrollPosition.max + scrollPosition.width
+                const indicatorWidthPercent = Math.min(40, Math.max(25, (scrollPosition.width / scrollWidth) * 100))
+                // Calcular la posición basada en el scroll actual
+                const scrollPercent = scrollPosition.max > 0 ? scrollPosition.left / scrollPosition.max : 0
+                const maxLeft = 100 - indicatorWidthPercent
+                const indicatorLeft = scrollPercent * maxLeft
+                
+                return (
+                  <div
+                    className="absolute h-1 bg-blue-500 rounded-full transition-all duration-150"
+                    style={{
+                      width: `${indicatorWidthPercent}%`,
+                      left: `${indicatorLeft}%`
+                    }}
+                  />
+                )
+              })()}
+            </div>
+          )}
+          <div 
+            ref={scrollContainerRef}
+            className="overflow-x-auto w-full max-h-[500px] overflow-y-auto"
+          >
             <div className="w-full">
               <table className="w-full border-collapse">
                 <thead className="sticky top-0 bg-gray-50 z-10">
