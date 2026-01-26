@@ -133,7 +133,7 @@ export default function SeguimientosPage() {
               animation: 'spin 0.7s linear infinite'
             }} 
           />
-          <p style={{ color: '#6B7280', fontSize: '18px' }}>{message}</p>
+          <p style={{ color: '#6B7280', fontSize: '20px' }}>{message}</p>
         </div>
         <style>{`
           @keyframes spin {
@@ -152,7 +152,7 @@ export default function SeguimientosPage() {
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-4">
             <div className="w-full sm:w-auto">
-              <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-1 flex items-center gap-2 sm:gap-3">
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-1 flex items-center gap-2 sm:gap-3">
                 <img src="/icons/segumiento1.svg" alt="Seguimiento" className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 flex-shrink-0" /> 
                 <span>Seguimiento</span>
               </h1>
@@ -195,7 +195,7 @@ export default function SeguimientosPage() {
               <p style={{ fontSize: '32px', fontWeight: '700', color: 'white', margin: 0 }}>
                 {completedVisits.length}
               </p>
-              <p style={{ fontSize: '12px', fontWeight: '500', color: 'white', margin: '4px 0 0 0' }}>Visitas completadas</p>
+              <p style={{ fontSize: '14px', fontWeight: '500', color: 'white', margin: '4px 0 0 0' }}>Visitas completadas</p>
             </div>
             <h2 className="text-sm sm:text-base font-semibold text-gray-800 mb-2 flex items-center gap-2">
               <span className="text-base sm:text-lg">📋✓</span> 
@@ -204,7 +204,7 @@ export default function SeguimientosPage() {
             </h2>
             <div className="flex flex-col gap-0">
               {completedVisits.length === 0 ? (
-                <p className="text-center py-3 text-gray-400 text-xs sm:text-sm">No hay visitas completadas</p>
+                <p className="text-center py-3 text-gray-400 text-sm sm:text-base">No hay visitas completadas</p>
               ) : (
                 completedVisits.slice(0, 5).map((visit) => {
                   const sympathizerName = visit.sympathizers?.name || 'Simpatizante'
@@ -216,12 +216,12 @@ export default function SeguimientosPage() {
                         {getInitials(sympathizerName)}
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="font-semibold text-gray-800 text-xs sm:text-sm truncate">{sympathizerName}</p>
-                        <p className="text-[10px] sm:text-xs text-gray-500 truncate hidden sm:block">{responsibleName}</p>
+                        <p className="font-semibold text-gray-800 text-sm sm:text-base truncate">{sympathizerName}</p>
+                        <p className="text-xs sm:text-sm text-gray-500 truncate hidden sm:block">{responsibleName}</p>
                       </div>
                       <div className="flex flex-col items-end gap-1 flex-shrink-0">
-                        <span className="text-[10px] sm:text-xs text-gray-500 whitespace-nowrap hidden sm:inline">{formatDate(visit.visit_date)}</span>
-                        <span className="px-2 py-0.5 bg-emerald-100 text-emerald-800 rounded text-[10px] sm:text-xs font-semibold">
+                        <span className="text-xs sm:text-sm text-gray-500 whitespace-nowrap hidden sm:inline">{formatDate(visit.visit_date)}</span>
+                        <span className="px-2 py-0.5 bg-emerald-100 text-emerald-800 rounded text-xs sm:text-sm font-semibold">
                           ✓
                         </span>
                       </div>
@@ -239,14 +239,14 @@ export default function SeguimientosPage() {
               <p style={{ fontSize: '32px', fontWeight: '700', color: 'white', margin: 0 }}>
                 {cancelledVisits.length}
               </p>
-              <p style={{ fontSize: '12px', fontWeight: '500', color: 'white', margin: '4px 0 0 0' }}>Visitas canceladas</p>
+              <p style={{ fontSize: '14px', fontWeight: '500', color: 'white', margin: '4px 0 0 0' }}>Visitas canceladas</p>
             </div>
-            <h2 style={{ fontSize: '16px', fontWeight: '600', color: '#1F2937', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <span style={{ fontSize: '18px' }}>📋✗</span> Visitas No Realizadas
+            <h2 style={{ fontSize: '18px', fontWeight: '600', color: '#1F2937', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <span style={{ fontSize: '20px' }}>📋✗</span> Visitas No Realizadas
             </h2>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
                 {cancelledVisits.length === 0 ? (
-                  <p style={{ textAlign: 'center', padding: '12px', color: '#9CA3AF', fontSize: '13px' }}>No hay visitas canceladas</p>
+                  <p style={{ textAlign: 'center', padding: '12px', color: '#9CA3AF', fontSize: '15px' }}>No hay visitas canceladas</p>
                 ) : (
                   cancelledVisits.slice(0, 5).map((visit) => {
                     const sympathizerName = visit.sympathizers?.name || 'Simpatizante'
@@ -269,19 +269,19 @@ export default function SeguimientosPage() {
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
-                          fontSize: '11px',
+                          fontSize: '13px',
                           fontWeight: '700',
                           flexShrink: 0
                         }}>
                           {getInitials(sympathizerName)}
                         </div>
-                        <span style={{ fontWeight: '600', color: '#1F2937', fontSize: '13px', flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                        <span style={{ fontWeight: '600', color: '#1F2937', fontSize: '15px', flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                           {sympathizerName}
                         </span>
-                        <span style={{ fontSize: '12px', color: '#6B7280', flexShrink: 0 }}>
+                        <span style={{ fontSize: '14px', color: '#6B7280', flexShrink: 0 }}>
                           {responsibleName}
                         </span>
-                        <span style={{ fontSize: '11px', color: '#6B7280', whiteSpace: 'nowrap', flexShrink: 0 }}>
+                        <span style={{ fontSize: '13px', color: '#6B7280', whiteSpace: 'nowrap', flexShrink: 0 }}>
                           {formatDate(visit.visit_date)}
                         </span>
                         <span style={{ 
@@ -289,7 +289,7 @@ export default function SeguimientosPage() {
                           background: '#FEE2E2',
                           color: '#991B1B',
                           borderRadius: '4px',
-                          fontSize: '11px',
+                          fontSize: '13px',
                           fontWeight: '600',
                           flexShrink: 0
                         }}>
@@ -309,14 +309,14 @@ export default function SeguimientosPage() {
               <p style={{ fontSize: '32px', fontWeight: '700', color: 'white', margin: 0 }}>
                 {noReturnSympathizers.length}
               </p>
-              <p style={{ fontSize: '12px', fontWeight: '500', color: 'white', margin: '4px 0 0 0' }}>Los que no volvieron</p>
+              <p style={{ fontSize: '14px', fontWeight: '500', color: 'white', margin: '4px 0 0 0' }}>Los que no volvieron</p>
             </div>
-            <h2 style={{ fontSize: '16px', fontWeight: '600', color: '#1F2937', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <span style={{ fontSize: '18px' }}>👥</span> Lista - No Volvieron
+            <h2 style={{ fontSize: '18px', fontWeight: '600', color: '#1F2937', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <span style={{ fontSize: '20px' }}>👥</span> Lista - No Volvieron
             </h2>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
                 {noReturnSympathizers.length === 0 ? (
-                  <p style={{ textAlign: 'center', padding: '12px', color: '#9CA3AF', fontSize: '13px' }}>No hay simpatizantes marcados como "No Volvieron"</p>
+                  <p style={{ textAlign: 'center', padding: '12px', color: '#9CA3AF', fontSize: '15px' }}>No hay simpatizantes marcados como "No Volvieron"</p>
                 ) : (
                   noReturnSympathizers.map((sympathizer) => {
                     const responsibleName = sympathizer.users?.name || 'Sin asignar'
@@ -376,7 +376,7 @@ export default function SeguimientosPage() {
                             color: 'white',
                             border: 'none',
                             borderRadius: '4px',
-                            fontSize: '11px',
+                            fontSize: '13px',
                             fontWeight: '600',
                             cursor: 'pointer',
                             whiteSpace: 'nowrap',
@@ -399,14 +399,14 @@ export default function SeguimientosPage() {
               <p style={{ fontSize: '32px', fontWeight: '700', color: 'white', margin: 0 }}>
                 {baptizedSympathizers.length}
               </p>
-              <p style={{ fontSize: '12px', fontWeight: '500', color: 'white', margin: '4px 0 0 0' }}>Los que se bautizaron</p>
+              <p style={{ fontSize: '14px', fontWeight: '500', color: 'white', margin: '4px 0 0 0' }}>Los que se bautizaron</p>
             </div>
-            <h2 style={{ fontSize: '16px', fontWeight: '600', color: '#1F2937', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <span style={{ fontSize: '18px' }}>💧</span> Lista de Bautizados
+            <h2 style={{ fontSize: '18px', fontWeight: '600', color: '#1F2937', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <span style={{ fontSize: '20px' }}>💧</span> Lista de Bautizados
             </h2>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
                 {baptizedSympathizers.length === 0 ? (
-                  <p style={{ textAlign: 'center', padding: '12px', color: '#9CA3AF', fontSize: '13px' }}>No hay simpatizantes bautizados</p>
+                  <p style={{ textAlign: 'center', padding: '12px', color: '#9CA3AF', fontSize: '15px' }}>No hay simpatizantes bautizados</p>
                 ) : (
                   baptizedSympathizers.map((sympathizer) => {
                     const responsibleName = sympathizer.users?.name || 'Sin asignar'
@@ -428,19 +428,19 @@ export default function SeguimientosPage() {
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
-                          fontSize: '11px',
+                          fontSize: '13px',
                           fontWeight: '700',
                           flexShrink: 0
                         }}>
                           {getInitials(sympathizer.name)}
                         </div>
-                        <span style={{ fontWeight: '600', color: '#1F2937', fontSize: '13px', flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                        <span style={{ fontWeight: '600', color: '#1F2937', fontSize: '15px', flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                           {sympathizer.name}
                         </span>
-                        <span style={{ fontSize: '12px', color: '#6B7280', flexShrink: 0 }}>
+                        <span style={{ fontSize: '14px', color: '#6B7280', flexShrink: 0 }}>
                           {responsibleName}
                         </span>
-                        <span style={{ fontSize: '11px', color: '#6B7280', whiteSpace: 'nowrap', flexShrink: 0 }}>
+                        <span style={{ fontSize: '13px', color: '#6B7280', whiteSpace: 'nowrap', flexShrink: 0 }}>
                           {sympathizer.baptism_date ? formatDate(sympathizer.baptism_date) : ''}
                         </span>
                         <span style={{ 
@@ -448,7 +448,7 @@ export default function SeguimientosPage() {
                           background: '#DBEAFE',
                           color: '#1E40AF',
                           borderRadius: '4px',
-                          fontSize: '11px',
+                          fontSize: '13px',
                           fontWeight: '600',
                           flexShrink: 0
                         }}>
@@ -464,20 +464,20 @@ export default function SeguimientosPage() {
 
         {/* Información Cómo marcar No Volvió */}
         <div className="card" style={{ padding: '24px', marginTop: '24px', marginBottom: '12px', background: '#FEF3C7', border: 'none', boxShadow: 'none' }}>
-          <h2 style={{ fontSize: '18px', fontWeight: '600', color: '#92400E', marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span style={{ fontSize: '20px' }}>❓</span> ¿Cómo marcar "No Volvió"?
+          <h2 style={{ fontSize: '20px', fontWeight: '600', color: '#92400E', marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <span style={{ fontSize: '22px' }}>❓</span> ¿Cómo marcar "No Volvió"?
           </h2>
-          <p style={{ fontSize: '14px', color: '#92400E', lineHeight: '1.6', margin: 0 }}>
+          <p style={{ fontSize: '16px', color: '#92400E', lineHeight: '1.6', margin: 0 }}>
             Desde el detalle del simpatizante, el encargado puede presionar el botón "Marcar como No Volvió" para mover a esta sección. Esto ayuda a mantener un registro organizado.
           </p>
         </div>
 
         {/* Sección Inferior - Gestión de Seguimientos */}
         <div className="card" style={{ marginTop: '12px', padding: '24px', background: '#DBEAFE', border: 'none', boxShadow: 'none' }}>
-          <h3 style={{ fontSize: '16px', fontWeight: '600', color: '#1E40AF', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span style={{ fontSize: '20px' }}>ℹ️</span> Gestión de Seguimientos
+          <h3 style={{ fontSize: '18px', fontWeight: '600', color: '#1E40AF', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <span style={{ fontSize: '22px' }}>ℹ️</span> Gestión de Seguimientos
           </h3>
-          <div style={{ display: 'grid', gap: '12px', fontSize: '14px', color: '#1E40AF', lineHeight: '1.6' }}>
+          <div style={{ display: 'grid', gap: '12px', fontSize: '16px', color: '#1E40AF', lineHeight: '1.6' }}>
             <div>
               <strong>Visitas Realizadas:</strong> Se almacenan automáticamente en el historial del simpatizante cuando se marca como completada
             </div>

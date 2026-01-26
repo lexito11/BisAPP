@@ -82,11 +82,11 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 py-8 sm:px-6 lg:px-8">
+    <div className="min-h-screen flex items-start sm:items-center justify-center px-4 pt-2 pb-8 sm:px-6 sm:py-8 lg:px-8">
       <div className="w-full max-w-md card">
         <div className="text-center mb-6 sm:mb-8">
-          <div className="w-12 h-12 sm:w-16 sm:h-16 bg-indigo-50 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
-            <svg className="w-6 h-6 sm:w-8 sm:h-8" viewBox="0 0 24 24" fill="none">
+          <div className="w-20 h-20 sm:w-16 sm:h-16 bg-indigo-50 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+            <svg className="w-10 h-10 sm:w-8 sm:h-8" viewBox="0 0 24 24" fill="none">
               <path d="M12 2L3 7L12 12L21 7L12 2Z" stroke="#4F46E5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               <path d="M3 17L12 22L21 17" stroke="#4F46E5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               <path d="M3 12L12 17L21 12" stroke="#4F46E5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>

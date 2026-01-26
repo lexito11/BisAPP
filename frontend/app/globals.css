@@ -12,6 +12,19 @@
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     @apply bg-white text-gray-900;
+    font-size: 17px;
+  }
+  
+  @media (min-width: 640px) {
+    body {
+      font-size: 18px;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    body {
+      font-size: 19px;
+    }
   }
 }
 
@@ -60,7 +73,7 @@
   padding: 12px;
   border: 2px solid #9CA3AF;
   border-radius: 6px;
-  font-size: 16px;
+  font-size: 17px;
   margin-bottom: 16px;
 }
 
@@ -77,17 +90,18 @@
   margin-bottom: 8px;
   font-weight: 500;
   color: #374151;
+  font-size: 16px;
 }
 
 .error {
   color: #DC2626;
-  font-size: 14px;
+  font-size: 15px;
   margin-top: 8px;
 }
 
 .success {
   color: #059669;
-  font-size: 14px;
+  font-size: 15px;
   margin-top: 8px;
 }
 
@@ -116,6 +130,33 @@
     .card {
       padding: 16px;
     }
+  }
+}
+
+/* Roles (Users) - evitar desbordes en móvil */
+@media (max-width: 640px) {
+  .users-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .users-row-main {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .users-row-actions {
+    width: 100%;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .users-role-pill {
+    max-width: 160px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 }
 

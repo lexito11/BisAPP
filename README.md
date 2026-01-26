@@ -24,7 +24,7 @@ Sistema de gestión y seguimiento de simpatizantes para iglesias, con sistema de
 
 ### 2. Configurar Variables de Entorno
 
-Crea el archivo `frontend/.env.local`:
+**Para desarrollo local**, crea el archivo `frontend/.env.local`:
 
 ```env
 NEXT_PUBLIC_SUPABASE_URL=tu_url_de_supabase
@@ -32,8 +32,16 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=tu_anon_key_de_supabase
 SUPABASE_SERVICE_ROLE_KEY=tu_service_role_key  # Solo para el servidor (no exponer en frontend)
 ```
 
+**Para despliegue en Vercel**, configura estas variables de entorno en el dashboard de Vercel:
+- `NEXT_PUBLIC_SUPABASE_URL`
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+- `SUPABASE_SERVICE_ROLE_KEY`
+
+Esto asegura que la aplicación funcione correctamente en todos los dispositivos desde cualquier ubicación.
+
 ### 3. Instalar y Correr
 
+**Para desarrollo local (solo desde tu computadora):**
 ```bash
 cd frontend
 npm install
@@ -41,6 +49,26 @@ npm run dev
 ```
 
 La aplicación estará en: `http://localhost:3000`
+
+**Para acceder desde dispositivos móviles en la misma red WiFi:**
+
+1. Ejecuta el servidor en modo red:
+```bash
+cd frontend
+npm run dev:network
+```
+
+2. Obtén la IP local de tu computadora:
+   - **Windows**: Abre PowerShell y ejecuta `ipconfig`, busca "IPv4 Address" en la sección de tu adaptador WiFi/Ethernet
+   - **Mac/Linux**: Ejecuta `ifconfig` o `ip addr` y busca tu IP local (generalmente 192.168.x.x o 10.x.x.x)
+
+3. Desde tu celular (conectado a la misma red WiFi), accede a:
+   ```
+   http://TU_IP_LOCAL:3000
+   ```
+   Por ejemplo: `http://192.168.1.100:3000`
+
+**⚠️ Importante**: Asegúrate de que tu celular y tu computadora estén en la misma red WiFi.
 
 ## 📋 Estructura del Proyecto
 
