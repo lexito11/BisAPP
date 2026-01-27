@@ -823,7 +823,7 @@ export default function Dashboard() {
             </div>
           </div>
 
-          <div className="card p-4 sm:p-5 border-none shadow-none" style={{ background: '#DC2626', boxShadow: 'none' }}>
+          <div className="card p-4 sm:p-5 border-none shadow-none" style={{ background: '#fbbf24', boxShadow: 'none' }}>
             <div>
               <p className="text-lg sm:text-xl lg:text-2xl font-bold text-white mb-1">Atención</p>
               <p className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white">{stats.yellow}</p>
@@ -831,7 +831,7 @@ export default function Dashboard() {
             </div>
           </div>
 
-          <div className="card p-4 sm:p-5 border-none shadow-none" style={{ background: '#fbbf24', boxShadow: 'none' }}>
+          <div className="card p-4 sm:p-5 border-none shadow-none" style={{ background: '#DC2626', boxShadow: 'none' }}>
             <div>
               <p className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-1">Urgente</p>
               <p className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white">{stats.red}</p>
