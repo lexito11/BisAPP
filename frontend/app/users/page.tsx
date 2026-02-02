@@ -245,11 +245,11 @@ export default function UsersPage() {
     const message = navigating === 'back' ? 'Saliendo...' : navigating === 'logout' ? 'Cerrando...' : 'Cargando datos...'
     return (
       <div className="loading-overlay-fixed bg-gray-50">
-        <div className="text-center">
+        <div>
           <img 
             src="/icons/iconocargar1.svg" 
             alt="Cargando" 
-            className="w-12 h-12 md:w-16 md:h-16 mb-4 animate-spin mx-auto" 
+            className="w-12 h-12 md:w-16 md:h-16 mb-4 animate-spin" 
           />
           <p className="text-gray-500 text-lg md:text-xl">{message}</p>
         </div>

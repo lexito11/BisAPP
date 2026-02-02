@@ -563,11 +563,11 @@ export default function Dashboard() {
     const message = navigating === 'logout' ? 'Cerrando...' : 'Cargando datos...'
     return (
       <div className="loading-overlay-fixed bg-gray-50">
-        <div className="text-center">
+        <div>
           <img 
             src="/icons/iconocargar1.svg" 
             alt="Cargando" 
-            className="w-12 h-12 sm:w-16 sm:h-16 mb-4 animate-spin mx-auto" 
+            className="w-12 h-12 sm:w-16 sm:h-16 mb-4 animate-spin" 
           />
           <p className="text-gray-500 text-lg sm:text-xl">{message}</p>
         </div>
@@ -898,7 +898,7 @@ export default function Dashboard() {
                 
                 return (
                   <div
-                    className="absolute h-1 bg-blue-500 rounded-full transition-all duration-150"
+                    className="absolute h-1 bg-blue-500 rounded-full"
                     style={{
                       width: `${indicatorWidthPercent}%`,
                       left: `${indicatorLeft}%`

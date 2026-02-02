@@ -342,7 +342,7 @@ export default function NotificationsPage() {
     const message = navigating === 'back' ? 'Saliendo...' : 'Cerrando...'
     return (
       <div className="loading-overlay-fixed" style={{ background: '#F9FAFB' }}>
-        <div style={{ textAlign: 'center' }}>
+        <div>
           <img 
             src="/icons/iconocargar1.svg" 
             alt="Cargando" 

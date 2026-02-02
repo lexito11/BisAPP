@@ -102,7 +102,7 @@ export default function SympathizerDetailPage({ params }: { params: { id: string
     const message = navigating === 'back' ? 'Saliendo...' : navigating === 'logout' ? 'Cerrando...' : 'Cargando datos...'
     return (
       <div className="loading-overlay-fixed" style={{ background: '#F9FAFB' }}>
-        <div style={{ textAlign: 'center' }}>
+        <div>
           <img 
             src="/icons/iconocargar1.svg" 
             alt="Cargando" 
