@@ -850,16 +850,17 @@ export default function Dashboard() {
 
         {/* Search and Add */}
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-6 sm:mt-8 mb-1 sm:mb-1">
-          <div className="flex-1 relative">
+          <div className="flex-1 relative flex items-center min-h-[44px] sm:min-h-[48px] rounded-md border-2 border-[#9CA3AF] bg-white">
             <img 
               src="/icons/iconobuscar1-invertido.svg" 
               alt="Buscar" 
-              className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 opacity-50 pointer-events-none" 
+              className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 opacity-50 pointer-events-none flex-shrink-0" 
             />
             <input
               type="text"
               placeholder="Buscar simpatizante..."
-              className="input pl-10 sm:pl-12 h-11 sm:h-12 text-base sm:text-lg bg-white"
+              className="w-full h-11 sm:h-12 pl-10 sm:pl-12 pr-3 text-base sm:text-lg bg-transparent border-none outline-none min-w-0"
+              style={{ marginBottom: 0 }}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
