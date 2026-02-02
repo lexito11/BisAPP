@@ -186,6 +186,16 @@
   }
 }
 
+/* Loading overlay fijo - icono siempre centrado en viewport al navegar */
+.loading-overlay-fixed {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
 /* Ocultar scrollbar horizontal en móviles - solo para la tabla de simpatizantes */
 @media (max-width: 640px) {
   .hide-scrollbar-horizontal {

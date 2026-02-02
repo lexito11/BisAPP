@@ -61,7 +61,7 @@ export default function ConfigPage() {
   if (navigating) {
     const message = navigating === 'back' ? 'Saliendo...' : 'Cerrando...'
     return (
-      <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#F9FAFB' }}>
+      <div className="loading-overlay-fixed" style={{ background: '#F9FAFB' }}>
         <div style={{ textAlign: 'center' }}>
           <img 
             src="/icons/iconocargar1.svg" 

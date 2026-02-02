@@ -244,7 +244,7 @@ export default function UsersPage() {
   if (loading || navigating) {
     const message = navigating === 'back' ? 'Saliendo...' : navigating === 'logout' ? 'Cerrando...' : 'Cargando datos...'
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+      <div className="loading-overlay-fixed bg-gray-50">
         <div className="text-center">
           <img 
             src="/icons/iconocargar1.svg" 

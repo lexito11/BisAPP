@@ -115,13 +115,7 @@ export default function SeguimientosPage() {
   if (loading || navigating) {
     const message = navigating === 'back' ? 'Saliendo...' : navigating === 'logout' ? 'Cerrando...' : 'Cargando datos...'
     return (
-      <div style={{ 
-        minHeight: '100vh', 
-        display: 'flex', 
-        alignItems: 'center', 
-        justifyContent: 'center',
-        background: '#FFFFFF'
-      }}>
+      <div className="loading-overlay-fixed" style={{ background: '#FFFFFF' }}>
         <div style={{ textAlign: 'center' }}>
           <img 
             src="/icons/iconocargar1.svg" 
